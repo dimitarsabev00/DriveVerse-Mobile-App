@@ -6,7 +6,12 @@ import CustomButton from "@/components/CustomButton";
 import { icons } from "@/constants";
 import { googleOAuth } from "@/lib/auth";
 
-const OAuth = () => {
+// Define the prop type for OAuth component
+interface OAuthProps {
+  title: string;
+}
+
+const OAuth: React.FC<OAuthProps> = ({ title }) => {
   const { startOAuthFlow } = useOAuth({ strategy: "oauth_google" });
 
   const handleGoogleSignIn = async () => {
@@ -27,7 +32,7 @@ const OAuth = () => {
       </View>
 
       <CustomButton
-        title="Log In with Google"
+        title={title}
         className="mt-5 w-full shadow-none"
         IconLeft={() => (
           <Image

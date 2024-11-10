@@ -109,7 +109,7 @@ const SignUp = () => {
             onPress={onSignUpPress}
             className="mt-6"
           />
-          <OAuth />
+          <OAuth title="Sign Up with Google"/>
           <Link
             href="/sign-in"
             className="text-lg text-center text-general-200 mt-10"

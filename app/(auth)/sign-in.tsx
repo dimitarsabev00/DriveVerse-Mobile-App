@@ -74,7 +74,7 @@ const SignIn = () => {
             className="mt-6"
           />
 
-          <OAuth />
+          <OAuth title="Sign In with Google"/>
 
           <Link
             href="/sign-up"
