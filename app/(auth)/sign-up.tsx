@@ -8,6 +8,7 @@ import CustomButton from "@/components/CustomButton";
 import InputField from "@/components/InputField";
 import OAuth from "@/components/OAuth";
 import { icons, images } from "@/constants";
+import { fetchAPI } from "@/lib/fetch";
 
 const SignUp = () => {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -48,7 +49,14 @@ const SignUp = () => {
         code: verification.code,
       });
       if (completeSignUp.status === "complete") {
-        // TODO: Added Functionality - Create User In Database
+        await fetchAPI("/(api)/user", {
+          method: "POST",
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            clerkId: completeSignUp.createdUserId,
+          }),
+        });
 
         await setActive({ session: completeSignUp.createdSessionId });
         setVerification({
@@ -109,7 +117,7 @@ const SignUp = () => {
             onPress={onSignUpPress}
             className="mt-6"
           />
-          <OAuth title="Sign Up with Google"/>
+          <OAuth title="Sign Up with Google" />
           <Link
             href="/sign-in"
             className="text-lg text-center text-general-200 mt-10"
@@ -173,8 +181,8 @@ const SignUp = () => {
             <CustomButton
               title="Browse Home"
               onPress={() => {
-                setShowSuccessModal(false)
-                router.push(`/(root)/(tabs)/home`)
+                setShowSuccessModal(false);
+                router.push(`/(root)/(tabs)/home`);
               }}
               className="mt-5"
             />
