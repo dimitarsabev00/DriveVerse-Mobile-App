@@ -1,4 +1,6 @@
 import { useUser } from "@clerk/clerk-expo";
+import { useAuth } from "@clerk/clerk-expo";
+import { router } from "expo-router";
 
 import {
   Text,
@@ -122,8 +124,12 @@ const recentRides = [
 
 const Home = () => {
   const { user } = useUser();
+  const { signOut } = useAuth();
 
-  const handleSignOut = () => {};
+  const handleSignOut = () => {
+    signOut();
+    router.replace("/(auth)/sign-in");
+  };
 
   const loading = true;
 
