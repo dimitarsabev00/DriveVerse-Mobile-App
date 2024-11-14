@@ -114,7 +114,7 @@ const Payment = ({
           }
         },
       },
-      returnURL: "myapp://book-ride",
+      returnURL: "driveverse://book-ride",
     });
 
     if (!error) {
